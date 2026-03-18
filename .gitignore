@@ -1,0 +1,23 @@
+### PHP / Composer ###
+vendor/
+.phpunit.result.cache
+
+### Sensitive Credentials ###
+.env
+.env.local
+.env.*.local
+
+### Google API / Secrets ###
+# Ignore all JSON files (likely service account keys)
+*.json
+# But DO NOT ignore composer.json
+!composer.json
+
+### Operating System Files ###
+.DS_Store
+Thumbs.db
+desktop.ini
+
+### IDEs ###
+.vscode/
+.idea/
