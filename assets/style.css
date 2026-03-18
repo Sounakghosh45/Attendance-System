@@ -1,0 +1,323 @@
+/* ========================================================================
+   GLOBAL TOKENS & "PRO" DESIGN UPGRADE
+   ======================================================================== */
+:root {
+    --primary-color: #4f46e5;       /* Indigo 600 */
+    --secondary-color: #818cf8;     /* Indigo 400 */
+    --accent-color: #06b6d4;        /* Cyan 500 */
+    --bg-color: #f3f4f6;            /* Gray 100 */
+    --text-primary: #1f2937;        /* Gray 800 */
+    --text-secondary: #4b5563;      /* Gray 600 */
+    
+    --error-bg: #fef2f2; 
+    --error-text: #991b1b; 
+    --error-border: #fecaca;
+    
+    --success-bg: #f0fdf4;
+    --success-text: #166534;
+    --success-border: #bbf7d0;
+
+    --surface-glass: rgba(255, 255, 255, 0.85);
+    --surface-border: rgba(255, 255, 255, 0.5);
+    --surface-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    background-image: radial-gradient(circle at top left, #e0e7ff 0%, #f3f4f6 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    margin: 0;
+}
+
+/* ========================================================================
+   SHARED COMPONENTS (Login & Register)
+   ======================================================================== */
+
+.brand-title {
+    color: var(--primary-color);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 5px;
+}
+
+.text-muted {
+    color: var(--text-secondary) !important;
+}
+
+/* Glassmorphism Card Panels */
+.glass-card, .login-wrapper {
+    background: var(--surface-glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--surface-border);
+    border-radius: 24px;
+    box-shadow: var(--surface-shadow);
+    overflow: hidden;
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Form Controls & Inputs */
+.form-label {
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.input-group-text {
+    background: #f9fafb !important;
+    border: 2px solid transparent !important;
+    border-right: none !important;
+    border-top-left-radius: 12px !important;
+    border-bottom-left-radius: 12px !important;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.form-control {
+    background: #f9fafb;
+    border: 2px solid transparent;
+    border-left: none;
+    border-top-right-radius: 12px !important;
+    border-bottom-right-radius: 12px !important;
+    padding: 14px 15px;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    background: #fff;
+    border-color: transparent !important;
+    box-shadow: none;
+}
+
+/* Focus states for the whole input group */
+.input-group:focus-within .input-group-text,
+.input-group:focus-within .form-control {
+    background: #fff !important;
+    border: 2px solid var(--secondary-color) !important;
+}
+.input-group:focus-within .input-group-text {
+    border-right: none !important;
+    color: var(--primary-color) !important;
+}
+.input-group:focus-within .form-control {
+    border-left: none !important;
+}
+
+/* Buttons */
+.btn-custom {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    border-radius: 12px;
+    padding: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    width: 100%;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+}
+
+.btn-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
+    color: white;
+}
+
+.btn-custom:active {
+    transform: translateY(0);
+}
+
+/* Alerts */
+.alert-custom {
+    background-color: var(--error-bg);
+    color: var(--error-text);
+    border: 1px solid var(--error-border);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.alert-success-custom {
+    background-color: var(--success-bg);
+    color: var(--success-text);
+    border: 1px solid var(--success-border);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* OTP Inputs */
+.otp-box {
+    letter-spacing: 6px;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 700;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 12px !important;
+    border: 2px dashed #cbd5e1 !important;
+    background: #f8fafc;
+    color: var(--primary-color);
+}
+.otp-box:focus {
+    border: 2px solid var(--primary-color) !important;
+}
+
+/* Links */
+a {
+    color: var(--primary-color);
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+a:hover {
+    color: var(--accent-color);
+}
+
+
+/* ========================================================================
+   LOGIN SPECIFIC (Split Layout)
+   ======================================================================== */
+
+.login-wrapper {
+    display: flex; 
+    width: 100%;
+    max-width: 950px;
+    min-height: 550px; 
+}
+
+.panel-image {
+    width: 50%; 
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.panel-image::after {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIi8+PC9zdmc+');
+    opacity: 0.3;
+}
+
+/* Animated Floating shapes for the image panel */
+.panel-image::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+    top: -100px;
+    right: -100px;
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-30px, 30px); }
+}
+
+.illustration-img {
+    max-width: 85%; 
+    height: auto; 
+    z-index: 2;
+    filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3));
+    transition: transform 0.5s ease;
+}
+.illustration-img:hover {
+    transform: scale(1.05);
+}
+
+.panel-form {
+    width: 50%; 
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgba(255,255,255,0.9);
+}
+
+/* Verification Icon */
+.verification-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+    width: 80px;
+    height: 80px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.15);
+}
+
+@media (max-width: 768px) {
+    .login-wrapper { flex-direction: column !important; margin: 20px; width: auto; height: auto; border-radius: 20px; }
+    .panel-image { display: none; } 
+    .panel-form { width: 100%; padding: 40px 30px; }
+}
+
+
+/* ========================================================================
+   REGISTER SPECIFIC (Centered Glass Card)
+   ======================================================================== */
+
+.register-wrapper {
+    width: 100%;
+    max-width: 480px; /* Slightly wider */
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+/* Background Animated Blobs for Register */
+.register-wrapper::before, .register-wrapper::after {
+    content: ''; 
+    position: absolute; 
+    border-radius: 50%; 
+    z-index: -1;
+    filter: blur(40px);
+    opacity: 0.6;
+}
+.register-wrapper::before {
+    top: -50px; right: -50px; 
+    width: 250px; height: 250px;
+    background: var(--primary-color);
+    animation: pulse 8s infinite alternate;
+}
+.register-wrapper::after {
+    bottom: -50px; left: -50px; 
+    width: 250px; height: 250px;
+    background: var(--accent-color);
+    animation: pulse 6s infinite alternate-reverse;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.2); }
+}
+
+.register-wrapper .glass-card {
+    padding: 50px 40px;
+}
